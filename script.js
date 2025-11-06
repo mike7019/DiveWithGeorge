@@ -242,10 +242,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ==================== SCROLL ANIMATIONS ====================
+    // ==================== SCROLL ANIMATIONS - OPTIMIZADO ====================
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05, // Reducido para activación más rápida
+        rootMargin: '0px 0px -20px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
@@ -264,17 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // ==================== PARALLAX EFFECT ====================
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.parallax > use');
-        
-        parallaxElements.forEach((element, index) => {
-            const speed = 0.5 + (index * 0.1);
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translate3d(${yPos}px, 0, 0)`;
-        });
-    });
+    // ==================== PARALLAX EFFECT - REMOVIDO PARA MEJOR PERFORMANCE ====================
+    // El efecto parallax ha sido deshabilitado para mejorar el rendimiento del scroll
     
     // ==================== LAZY LOADING IMAGES ====================
     if ('IntersectionObserver' in window) {
@@ -333,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%cWebsite developed with ❤️ using Tailwind CSS', 'color: #666; font-size: 12px;');
     
     // ==================== PERFORMANCE OPTIMIZATION ====================
-    // Debounce function for scroll events
+    // Debounce function for scroll events - OPTIMIZADO
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -346,10 +337,26 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
-    // Apply debounce to scroll-heavy functions
-    window.addEventListener('scroll', debounce(function() {
-        // Any scroll-heavy operations can be optimized here
-    }, 10));
+    // Throttle para eventos de scroll más eficiente
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+    
+    // Apply throttle to scroll-heavy functions (reducido el debounce)
+    const optimizedScroll = throttle(function() {
+        // Scroll operations optimizadas
+    }, 50);
+    
+    window.addEventListener('scroll', optimizedScroll, { passive: true });
     
 });
 
