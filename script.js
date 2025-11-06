@@ -426,3 +426,166 @@ if (document.querySelector('.business-hours-status')) {
     // Update every minute
     setInterval(updateBusinessHoursStatus, 60000);
 }
+
+// ==================== GALLERY LIGHTBOX ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const prevImage = document.getElementById('prevImage');
+    const nextImage = document.getElementById('nextImage');
+    
+    let currentImageIndex = 0;
+    
+    // Gallery data
+    const galleryData = [
+        {
+            src: 'img/fernando-jorge-948Dftugtxo-unsplash.jpg',
+            title: 'Underwater Paradise',
+            caption: 'Exploring the depths of Cozumel'
+        },
+        {
+            src: 'img/pexels-chris-spain-1559126760-27758101.jpg',
+            title: 'Marine Wonders',
+            caption: 'Discover vibrant sea life'
+        },
+        {
+            src: 'img/pexels-francesco-ungaro-3420262.jpg',
+            title: 'Crystal Waters',
+            caption: 'Pure beauty beneath the surface'
+        },
+        {
+            src: 'img/pexels-pspov-3046629.jpg',
+            title: 'Diving Adventure',
+            caption: 'Unforgettable experiences await'
+        }
+    ];
+    
+    // Open lightbox when clicking on gallery item
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            currentImageIndex = index;
+            openLightbox();
+        });
+    });
+    
+    // Open lightbox function
+    function openLightbox() {
+        const imageData = galleryData[currentImageIndex];
+        lightboxImage.src = imageData.src;
+        lightboxImage.alt = imageData.title;
+        lightboxCaption.textContent = `${imageData.title} - ${imageData.caption}`;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Close lightbox function
+    function closeLightboxFunc() {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+    
+    // Close button click
+    if (closeLightbox) {
+        closeLightbox.addEventListener('click', closeLightboxFunc);
+    }
+    
+    // Close on background click
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightboxFunc();
+        }
+    });
+    
+    // Previous image
+    if (prevImage) {
+        prevImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            updateLightboxImage();
+        });
+    }
+    
+    // Next image
+    if (nextImage) {
+        nextImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+            updateLightboxImage();
+        });
+    }
+    
+    // Update lightbox image
+    function updateLightboxImage() {
+        const imageData = galleryData[currentImageIndex];
+        
+        // Add fade effect
+        lightboxImage.style.opacity = '0';
+        
+        setTimeout(() => {
+            lightboxImage.src = imageData.src;
+            lightboxImage.alt = imageData.title;
+            lightboxCaption.textContent = `${imageData.title} - ${imageData.caption}`;
+            lightboxImage.style.opacity = '1';
+        }, 200);
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('hidden')) {
+            if (e.key === 'Escape') {
+                closeLightboxFunc();
+            } else if (e.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+                updateLightboxImage();
+            } else if (e.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+                updateLightboxImage();
+            }
+        }
+    });
+    
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    lightbox.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightbox.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe left - next image
+            currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+            updateLightboxImage();
+        }
+        
+        if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe right - previous image
+            currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            updateLightboxImage();
+        }
+    }
+    
+    // Preload images for better performance
+    function preloadImages() {
+        galleryData.forEach(data => {
+            const img = new Image();
+            img.src = data.src;
+        });
+    }
+    
+    preloadImages();
+});
+
