@@ -10,12 +10,15 @@ Página web profesional para servicios de buceo y snorkel en Cozumel, México. O
 
 - ✨ Diseño moderno y responsive
 - 🎥 Video de fondo en la sección hero
+- 🖼️ Galería de imágenes con lightbox interactivo
 - 🎨 Construido con Tailwind CSS
 - 📱 Totalmente responsive (mobile-first)
 - 🌊 Animaciones suaves de olas
 - 📝 Formulario de contacto funcional
 - 🍪 Banner de cookies con localStorage
 - ⬆️ Botón scroll to top
+- ⌨️ Navegación por teclado en galería
+- 👆 Soporte de gestos táctiles (swipe) en móvil
 - 🎯 SEO optimizado
 
 ## 🛠️ Tecnologías Utilizadas
@@ -31,6 +34,11 @@ Página web profesional para servicios de buceo y snorkel en Cozumel, México. O
 
 ```
 DiveWithGeorge/
+├── img/                    # Carpeta de imágenes de galería
+│   ├── fernando-jorge-948Dftugtxo-unsplash.jpg
+│   ├── pexels-chris-spain-1559126760-27758101.jpg
+│   ├── pexels-francesco-ungaro-3420262.jpg
+│   └── pexels-pspov-3046629.jpg
 ├── index.html              # Página principal
 ├── styles.css              # Estilos personalizados
 ├── script.js               # Funcionalidad JavaScript
@@ -58,7 +66,7 @@ No se requiere instalación de dependencias ya que se utiliza Tailwind CSS media
 ## 🌿 Ramas
 
 - **master**: Versión con fondo gradiente en hero section
-- **fix-banner**: Versión con video de fondo en hero section
+- **fix-banner**: Versión con video de fondo en hero section + galería de imágenes con lightbox
 
 ## 📞 Información de Contacto
 
@@ -79,13 +87,15 @@ No se requiere instalación de dependencias ya que se utiliza Tailwind CSS media
 - Meta tags para SEO
 - Accesibilidad mejorada
 - Lazy loading de imágenes
+- Galería con grid responsive
 
 ### CSS
-- Animaciones personalizadas
-- Efectos de hover
+- Animaciones personalizadas (fade, zoom, slide)
+- Efectos de hover en galería
 - Gradientes y sombras
 - Responsive breakpoints
 - Modo reducido de movimiento
+- Estilos para lightbox modal
 
 ### JavaScript
 - Menú móvil interactivo
@@ -94,6 +104,12 @@ No se requiere instalación de dependencias ya que se utiliza Tailwind CSS media
 - Sistema de notificaciones
 - Gestión de cookies
 - Scroll animations
+- **Lightbox de galería** con:
+  - Navegación por teclado (flechas, ESC)
+  - Navegación táctil (swipe)
+  - Botones prev/next
+  - Precarga de imágenes
+  - Animaciones suaves
 - Performance optimizations
 
 ## 🚀 Deployment
