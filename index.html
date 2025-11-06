@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,22 +53,36 @@
     <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 md:p-6 z-50 transform translate-y-0 transition-transform duration-500">
         <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex-1">
-                <h4 class="text-lg font-semibold mb-2">Este sitio web utiliza cookies</h4>
-                <p class="text-sm text-gray-300">Usamos cookies para analizar el tráfico del sitio web y optimizar tu experiencia en el sitio. Al aceptar nuestro uso de cookies, tus datos se agruparán con los datos de todos los demás usuarios.</p>
+                <h4 class="text-lg font-semibold mb-2">This website uses cookies</h4>
+                <p class="text-sm text-gray-300">We use cookies to analyze website traffic and optimize your experience on the site. By accepting our use of cookies, your data will be aggregated with all other user data.</p>
             </div>
             <button id="acceptCookies" class="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 whitespace-nowrap">
-                ACEPTAR
+                ACCEPT
             </button>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-gradient-to-r from-sky-50 to-cyan-50 shadow-md z-40 transition-all duration-300 backdrop-blur-sm bg-opacity-95" id="navbar">
-        <div class="container mx-auto px-4 py-4">
+        <div class="container mx-auto px-4 py-5">
             <div class="flex items-center justify-between">
-                <a href="#home" class="text-2xl md:text-3xl font-display font-bold text-ocean-700 hover:text-ocean-600 transition duration-300">
-                    Dive With George
-                </a>
+                <div class="flex items-center gap-4">
+                    <a href="#home" class="text-2xl md:text-3xl font-display font-bold text-ocean-700 hover:text-ocean-600 transition duration-300">
+                        Dive With George
+                    </a>
+                    <!-- Certification Logos -->
+                    <div class="hidden md:flex items-center gap-3 ml-6">
+                        <a href="https://www.youtube.com/watch?v=b-3MjBOJrZw" target="_blank" rel="noopener noreferrer" title="Dive Flag Video">
+                            <img src="img/Diver-flag-with-black-diver.png" alt="Diver Flag" class="h-14 w-auto object-contain rounded-lg shadow-sm border border-gray-200 bg-white p-1.5 hover:scale-105 transition duration-300">
+                        </a>
+                        <a href="https://www.naui.org/" target="_blank" rel="noopener noreferrer" title="NAUI">
+                            <img src="img/naui.jpg" alt="NAUI Certified" class="h-14 w-auto object-contain rounded-lg shadow-sm border border-gray-200 hover:scale-105 transition duration-300">
+                        </a>
+                        <a href="https://www.padi.com/es/diving-in/mexico/" target="_blank" rel="noopener noreferrer" title="PADI">
+                            <img src="img/padi-logo-fb-event.jpg" alt="PADI Certified" class="h-14 w-auto object-contain rounded-lg shadow-sm border border-gray-200 hover:scale-105 transition duration-300">
+                        </a>
+                    </div>
+                </div>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobileMenuBtn" class="md:hidden text-ocean-700 text-2xl">
@@ -77,27 +91,77 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Inicio</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Acerca de</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Servicios</a>
-                    <a href="#gallery" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Galería</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Contacto</a>
+                    <a href="#home" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">About</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Services</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Gallery</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Contact</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="relative language-selector">
+                        <button id="languageBtn" class="flex items-center gap-2 text-gray-700 hover:text-ocean-600 font-medium transition duration-300">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLang">EN</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="languageMenu" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow-lg py-2 min-w-[120px]">
+                            <button onclick="translatePage('en')" class="block w-full text-left px-4 py-2 hover:bg-gray-100 transition duration-200">
+                                <span class="fi fi-us mr-2">🇺🇸</span> English
+                            </button>
+                            <button onclick="translatePage('es')" class="block w-full text-left px-4 py-2 hover:bg-gray-100 transition duration-200">
+                                <span class="fi fi-es mr-2">🇪🇸</span> Español
+                            </button>
+                            <button onclick="translatePage('fr')" class="block w-full text-left px-4 py-2 hover:bg-gray-100 transition duration-200">
+                                <span class="fi fi-fr mr-2">🇫🇷</span> Français
+                            </button>
+                        </div>
+                    </div>
                     <a href="tel:+529871055827" class="bg-ocean-600 text-white px-6 py-2 rounded-full hover:bg-ocean-700 transition duration-300 font-semibold">
-                        <i class="fas fa-phone mr-2"></i>Llamar
+                        <i class="fas fa-phone mr-2"></i>Call Now
                     </a>
                 </div>
             </div>
             
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <!-- Mobile Certification Logos -->
+                <div class="flex items-center justify-center gap-3 mb-4 pb-4 border-b border-gray-200">
+                    <a href="https://www.youtube.com/watch?v=b-3MjBOJrZw" target="_blank" rel="noopener noreferrer" title="Dive Flag Video">
+                        <img src="img/Diver-flag-with-black-diver.png" alt="Diver Flag" class="h-10 w-auto object-contain rounded-lg shadow-sm border border-gray-200 bg-white p-1.5">
+                    </a>
+                    <a href="https://www.naui.org/" target="_blank" rel="noopener noreferrer" title="NAUI">
+                        <img src="img/naui.jpg" alt="NAUI Certified" class="h-10 w-auto object-contain rounded-lg shadow-sm border border-gray-200">
+                    </a>
+                    <a href="https://www.padi.com/es/diving-in/mexico/" target="_blank" rel="noopener noreferrer" title="PADI">
+                        <img src="img/padi-logo-fb-event.jpg" alt="PADI Certified" class="h-10 w-auto object-contain rounded-lg shadow-sm border border-gray-200">
+                    </a>
+                </div>
+                
                 <div class="flex flex-col space-y-4">
-                    <a href="#home" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Inicio</a>
-                    <a href="#about" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Acerca de</a>
-                    <a href="#services" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Servicios</a>
-                    <a href="#gallery" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Galería</a>
-                    <a href="#contact" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Contacto</a>
+                    <a href="#home" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Home</a>
+                    <a href="#about" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">About</a>
+                    <a href="#services" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Services</a>
+                    <a href="#gallery" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Gallery</a>
+                    <a href="#contact" class="mobile-nav-link text-gray-700 hover:text-ocean-600 font-medium transition duration-300">Contact</a>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="border-t border-gray-200 pt-4">
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-globe mr-2"></i>Language / Idioma</p>
+                        <div class="flex gap-2">
+                            <button onclick="translatePage('en')" class="flex-1 px-3 py-2 bg-gray-100 hover:bg-ocean-100 rounded-lg transition duration-200 text-sm">
+                                🇺🇸 EN
+                            </button>
+                            <button onclick="translatePage('es')" class="flex-1 px-3 py-2 bg-gray-100 hover:bg-ocean-100 rounded-lg transition duration-200 text-sm">
+                                🇪🇸 ES
+                            </button>
+                            <button onclick="translatePage('fr')" class="flex-1 px-3 py-2 bg-gray-100 hover:bg-ocean-100 rounded-lg transition duration-200 text-sm">
+                                🇫🇷 FR
+                            </button>
+                        </div>
+                    </div>
+                    
                     <a href="tel:+529871055827" class="bg-ocean-600 text-white px-6 py-3 rounded-full hover:bg-ocean-700 transition duration-300 text-center font-semibold">
-                        <i class="fas fa-phone mr-2"></i>Llamar Ahora
+                        <i class="fas fa-phone mr-2"></i>Call Now
                     </a>
                 </div>
             </div>
@@ -205,7 +269,7 @@
     <section id="services" class="py-16 md:py-24 bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h6 class="text-ocean-600 font-semibold text-lg mb-2">Hola</h6>
+                <h6 class="text-ocean-600 font-semibold text-lg mb-2">Hello</h6>
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-ocean-800 mb-6">Welcome to Dive With George - Dive into Adventure</h2>
                 <p class="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
                     Discover the beauty of Cozumel with Dive With George. Join us for unforgettable scuba and free diving experiences. Explore vibrant reefs, incredible marine life, and thrilling wrecks. Safety is our top priority. Let's create memories beneath the waves!
@@ -213,52 +277,88 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Service Card 1 -->
-                <div class="bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300">
-                    <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                        <i class="fas fa-swimming-pool text-2xl"></i>
+                <!-- Service Card 1 - Flip Card -->
+                <div class="flip-card h-80 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- Front -->
+                        <div class="flip-card-front bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl p-8 shadow-lg">
+                            <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                                <i class="fas fa-swimming-pool text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-ocean-800 mb-4">Scuba Diving</h3>
+                            <p class="text-gray-700 leading-relaxed">Explore the depths of Cozumel's crystal-clear waters with our professional scuba diving services.</p>
+                            <p class="text-sm text-ocean-600 mt-4 font-semibold">🔄 Click to learn history</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="flip-card-back bg-gradient-to-br from-ocean-600 to-ocean-700 rounded-2xl p-8 shadow-lg text-white">
+                            <h3 class="text-2xl font-bold mb-4">🏛️ Cozumel History</h3>
+                            <p class="text-sm leading-relaxed">The Maya considered Cozumel sacred, dedicated to Ixchel, goddess of fertility. Mayan women would pilgrimage to the island to receive blessings. Today, its reefs are a world heritage for diving.</p>
+                            <p class="text-xs mt-4 font-semibold opacity-75">🔄 Click to return</p>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-ocean-800 mb-4">Scuba Diving</h3>
-                    <p class="text-gray-700 leading-relaxed">Explore the depths of Cozumel's crystal-clear waters with our professional scuba diving services.</p>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="bg-gradient-to-br from-sky-100 to-cyan-100 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300">
-                    <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                        <i class="fas fa-mask text-2xl"></i>
+                <!-- Service Card 2 - Flip Card -->
+                <div class="flip-card h-80 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- Front -->
+                        <div class="flip-card-front bg-gradient-to-br from-sky-100 to-cyan-100 rounded-2xl p-8 shadow-lg">
+                            <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                                <i class="fas fa-mask text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-ocean-800 mb-4">Snorkeling</h3>
+                            <p class="text-gray-700 leading-relaxed">Enjoy the beauty of marine life near the surface with our safe and exciting snorkeling experiences.</p>
+                            <p class="text-sm text-ocean-600 mt-4 font-semibold">🔄 Click to learn history</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="flip-card-back bg-gradient-to-br from-cyan-600 to-blue-700 rounded-2xl p-8 shadow-lg text-white">
+                            <h3 class="text-2xl font-bold mb-4">🌊 Palancar Reef</h3>
+                            <p class="text-sm leading-relaxed">Jacques Cousteau visited Cozumel in 1961 and declared its reefs among the most beautiful in the world. The Palancar Reef became world-famous, attracting divers from every continent.</p>
+                            <p class="text-xs mt-4 font-semibold opacity-75">🔄 Click to return</p>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-ocean-800 mb-4">Snorkeling</h3>
-                    <p class="text-gray-700 leading-relaxed">Enjoy the beauty of marine life near the surface with our safe and exciting snorkeling experiences.</p>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition duration-300">
-                    <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                        <i class="fas fa-certificate text-2xl"></i>
+                <!-- Service Card 3 - Flip Card -->
+                <div class="flip-card h-80 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- Front -->
+                        <div class="flip-card-front bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl p-8 shadow-lg">
+                            <div class="bg-ocean-600 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                                <i class="fas fa-certificate text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-ocean-800 mb-4">Professional Guides</h3>
+                            <p class="text-gray-700 leading-relaxed">Our experienced instructors ensure your safety while delivering an unforgettable underwater adventure.</p>
+                            <p class="text-sm text-ocean-600 mt-4 font-semibold">🔄 Click to learn history</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="flip-card-back bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 shadow-lg text-white">
+                            <h3 class="text-2xl font-bold mb-4">⚓ Underwater Heritage</h3>
+                            <p class="text-sm leading-relaxed">During World War II, German submarines patrolled these waters. Today, Cozumel hosts the MUSA Underwater Museum, with over 500 sculptures that merge art, conservation, and history.</p>
+                            <p class="text-xs mt-4 font-semibold opacity-75">🔄 Click to return</p>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-ocean-800 mb-4">Professional Guides</h3>
-                    <p class="text-gray-700 leading-relaxed">Our experienced instructors ensure your safety while delivering an unforgettable underwater adventure.</p>
                 </div>
             </div>
             
             <div class="text-center mt-12">
                 <a href="#contact" class="inline-block bg-ocean-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-ocean-700 transform hover:scale-105 transition duration-300 shadow-lg">
-                    OBTÉN MÁS INFORMACIÓN
+                    GET MORE INFO
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Welcome Section (Spanish) -->
+    <!-- Welcome Section -->
     <section class="py-16 md:py-24 bg-gradient-to-br from-ocean-700 via-ocean-600 to-cyan-700 text-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
-                <h4 class="text-3xl md:text-4xl font-bold mb-6">Bienvenido</h4>
+                <h4 class="text-3xl md:text-4xl font-bold mb-6">Welcome</h4>
                 <p class="text-lg leading-relaxed mb-8 opacity-90">
-                    Hay mucho para ver aquí. Así que, tómate tu tiempo, mira alrededor y entérate de todo lo que hay para saber sobre nosotros. Esperamos que disfrutes nuestro sitio web y tómate un momento para dejarnos unas líneas.
+                    There's so much to see here. So, take your time, look around, and learn all there is to know about us. We hope you enjoy our website and take a moment to drop us a line.
                 </p>
                 <a href="#contact" class="inline-block bg-white text-ocean-700 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transform hover:scale-105 transition duration-300 shadow-lg">
-                    OBTÉN MÁS INFORMACIÓN
+                    GET MORE INFO
                 </a>
             </div>
         </div>
@@ -268,10 +368,10 @@
     <section id="gallery" class="py-16 md:py-24 bg-gradient-to-br from-indigo-50 via-blue-100 to-cyan-100">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h6 class="text-ocean-600 font-semibold text-lg mb-2">Galería</h6>
+                <h6 class="text-ocean-600 font-semibold text-lg mb-2">Gallery</h6>
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-ocean-800 mb-6">Captured Moments</h2>
                 <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                    Descubre la belleza submarina de Cozumel a través de nuestras imágenes. Cada foto cuenta una historia de aventura y maravilla bajo las olas.
+                    Discover the underwater beauty of Cozumel through our images. Each photo tells a story of adventure and wonder beneath the waves.
                 </p>
             </div>
             
@@ -426,11 +526,11 @@
                         </button>
                         
                         <p class="text-xs text-gray-600 mt-4">
-                            Este sitio está protegido por reCAPTCHA y aplican las 
-                            <a href="https://policies.google.com/privacy" class="text-ocean-600 hover:underline" target="_blank">Política de privacidad</a> 
-                            y los 
-                            <a href="https://policies.google.com/terms" class="text-ocean-600 hover:underline" target="_blank">Términos de servicio</a> 
-                            de Google.
+                            This site is protected by reCAPTCHA and the Google 
+                            <a href="https://policies.google.com/privacy" class="text-ocean-600 hover:underline" target="_blank">Privacy Policy</a> 
+                            and 
+                            <a href="https://policies.google.com/terms" class="text-ocean-600 hover:underline" target="_blank">Terms of Service</a> 
+                            apply.
                         </p>
                     </form>
                 </div>
@@ -491,7 +591,7 @@
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
                 <h6 class="text-lg font-semibold mb-2 opacity-90">Join Us</h6>
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">This Is your vacation let it be a tale to tell!!</h2>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">This Is Your Vacation - Let It Be a Tale to Tell!!</h2>
                 <p class="text-lg leading-relaxed mb-8 opacity-90">
                     Our mission is your safety first so your experience is to be told for many years of the magic kingdom George will guide you to paradise in Cozumel!!
                 </p>
@@ -507,11 +607,16 @@
         <div class="container mx-auto px-4">
             <div class="text-center">
                 <p class="text-sm mb-2">
-                    Copyright © 2025 Dive With George - Todos los derechos reservados.
+                    Copyright © 2025 Dive With George - All rights reserved.
                 </p>
                 <p class="text-xs text-gray-400">
-                    Con tecnología de 
-                    <a href="https://www.godaddy.com" class="hover:text-white transition duration-300" target="_blank">GoDaddy</a>
+                    Developed by 
+                    <a href="https://wa.me/573043261092?text=Hello%20Michael!%20I%20saw%20the%20Dive%20With%20George%20website" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition duration-300 font-semibold">
+                        Michael Garzon <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="tel:+573043261092" class="hover:text-white transition duration-300 ml-2">
+                        <i class="fas fa-phone"></i> +57 304 326 1092
+                    </a>
                 </p>
             </div>
         </div>
@@ -521,6 +626,17 @@
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-ocean-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-ocean-700 transform hover:scale-110 transition duration-300 opacity-0 pointer-events-none z-30">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a 
+        href="https://wa.me/529871055827?text=Hello!%20I'm%20interested%20in%20diving%20with%20Dive%20With%20George" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="fixed bottom-8 left-8 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl hover:bg-green-600 transform hover:scale-110 transition duration-300 flex items-center justify-center z-40 pulse-animation"
+        title="Contact us on WhatsApp"
+    >
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
